@@ -53,6 +53,7 @@ def reply(intent,text,reply_token,id,disname):
                 Confirmed, NewConfirmed, Recovered, Hospitalized, Deaths))
 
         line_bot_api.reply_message(reply_token, text_message)
+		#Test
 
 
 if __name__ == "__main__":
