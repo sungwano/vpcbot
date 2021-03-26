@@ -44,14 +44,15 @@ def reply(intent,text,reply_token,id,disname):
     elif intent == 'covid 19':
         data = requests.get('https://covid19.th-stat.com/api/open/today')
         json_data = json.loads(data.text)
+        DateRp  = json_data['UpdateDate'] #วันที่ update
         Confirmed = format(json_data['Confirmed'], ',d')  # ติดเชื้อสะสม
         Recovered = format(json_data['Recovered'], ',d')  # หายแล้ว
         Hospitalized = format(json_data['Hospitalized'], ',d')  # รักษาอยู่ใน รพ.
         Deaths = format(json_data['Deaths'], ',d')  # เสียชีวิต
         NewConfirmed = format(json_data['NewConfirmed'], ',d')  # บวกเพิ่ม
         text_message = TextSendMessage(
-            text='ติดเชื้อสะสม = {} คน(+เพิ่ม {})\nหายแล้ว = {} คน\nรักษาอยู่ใน รพ. = {} คน\nเสียชีวิต = {} คน'.format(
-                Confirmed, NewConfirmed, Recovered, Hospitalized, Deaths))
+            text='รายงานผู้ติดเชื้อโควิด 19 ประจำ = {} ติดเชื้อสะสม = {} คน(+เพิ่ม {})\nหายแล้ว = {} คน\nรักษาอยู่ใน รพ. = {} คน\nเสียชีวิต = {} คน'.format(
+                DateRp, Confirmed, NewConfirmed, Recovered, Hospitalized, Deaths))
 
         line_bot_api.reply_message(reply_token, text_message)
 		#Test
