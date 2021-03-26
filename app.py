@@ -51,7 +51,7 @@ def reply(intent,text,reply_token,id,disname):
         Deaths = format(json_data['Deaths'], ',d')  # เสียชีวิต
         NewConfirmed = format(json_data['NewConfirmed'], ',d')  # บวกเพิ่ม
         text_message = TextSendMessage(
-            text='รายงานผู้ติดเชื้อโควิด 19\n ติดเชื้อสะสม = {} คน(+เพิ่ม {})\nหายแล้ว = {} คน\nรักษาอยู่ใน รพ. = {} คน\nเสียชีวิต = {} คน\n Updated : {}'.format(
+            text='รายงานผู้ติดเชื้อโควิด 19\n- ติดเชื้อสะสม = {} คน(+เพิ่ม {})\n- หายแล้ว = {} คน\n- รักษาอยู่ใน รพ. = {} คน\n- เสียชีวิต = {} คน\n\n**Updated : {}'.format(
                 Confirmed, NewConfirmed, Recovered, Hospitalized, Deaths, DateRp))
 
         line_bot_api.reply_message(reply_token, text_message)
