@@ -30,9 +30,9 @@ def callback():
 
     #print('id = ' + id)
     #print('name = ' + disname)
-    print('text = ' + text)
-    print('intent = ' + intent)
-    print('reply_token = ' + reply_token)
+    #print('text = ' + text)
+    #print('intent = ' + intent)
+    #print('reply_token = ' + reply_token)
     reply(intent, text, reply_token, id, disname)
 
     return 'OK'
@@ -44,7 +44,7 @@ def reply(intent,text,reply_token,id,disname):
     elif intent == 'covid 19':
         data = requests.get('https://covid19.th-stat.com/api/open/today')
         json_data = json.loads(data.text)
-        print(json_data)
+        #print(json_data)
         Confirmed = format(json_data['Confirmed'], ',d')  # ติดเชื้อสะสม
         Recovered = format(json_data['Recovered'], ',d')  # หายแล้ว
         Hospitalized = format(json_data['Hospitalized'], ',d')  # รักษาอยู่ใน รพ.
@@ -52,16 +52,28 @@ def reply(intent,text,reply_token,id,disname):
         NewConfirmed = format(json_data['NewConfirmed'], ',d')  # บวกเพิ่ม
         UpdateDate = json_data['UpdateDate']
         toDay = UpdateDate.split(' ')[0]
-        print(UpdateDate)
+        #print(UpdateDate)
         text_message = TextSendMessage(
             text='รายงานผู้ติด COVID-19 ในประเทศไทยประจำวันที่ {}\n\nติดเชื้อสะสม = {} คน(+เพิ่ม {})\nหายแล้ว = {} คน\nรักษาอยู่ใน รพ. = {} คน\nเสียชีวิต = {} คน\n\n**Updated : {}'.format(
                 toDay, Confirmed, NewConfirmed, Recovered, Hospitalized, Deaths, UpdateDate))
     elif intent == 'company_addr':
         compgrp_id = ''
         text = text.upper()
-        if text.find("TIC") >= 0 or text.find("STC") >= 0 or text.find("TNH") >= 0 or text.find("PYA") >= 0 or text.find("DTC") >= 0 or text.find("DRD") >= 0:
-            compgrp_id = text
 
+        if text.find("TIC") >= 0 :
+            compgrp_id = 'TIC'
+        elif text.find("STC") >= 0 :
+            compgrp_id = 'STC'
+        elif text.find("TNH") >= 0 :
+            compgrp_id = 'TNH'
+        elif text.find("TNH") >= 0 :
+            compgrp_id = 'TNH'
+        elif text.find("DRD") >= 0:
+            compgrp_id = 'DRD'
+        elif text.find("PYA") >= 0  or text.find("โป่งแยง") >= 0:
+            compgrp_id = 'PYA'
+
+        #print(text)
         path = "address/"
         file1 = open(path + compgrp_id+".txt", encoding="utf8")
         addr = ""
@@ -104,7 +116,11 @@ def reply(intent,text,reply_token,id,disname):
             dep_id = 'HR'
         #extNumber = getExtNumber(dep_id)
 
+
         path = "ext_number/"
+
+        print(path + dep_id+".txt")
+
         file1 = open(path + dep_id+".txt", encoding="utf8")
         file_as_list = file1.readlines()
         extNumber = ""
