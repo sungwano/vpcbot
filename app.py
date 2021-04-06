@@ -72,6 +72,8 @@ def reply(intent,text,reply_token,id,disname):
             compgrp_id = 'DRD'
         elif text.find("PYA") >= 0  or text.find("โป่งแยง") >= 0:
             compgrp_id = 'PYA'
+        elif text.find("DTC") >= 0  or text.find("ดอยสะเก็ด") >= 0:
+            compgrp_id = 'DTC'
 
         #print(text)
         path = "address/"
