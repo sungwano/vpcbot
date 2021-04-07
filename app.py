@@ -70,10 +70,32 @@ def reply(intent,text,reply_token,id,disname):
             compgrp_id = 'TNH'
         elif text.find("DRD") >= 0:
             compgrp_id = 'DRD'
+        elif text.find("SP") >= 0:
+            compgrp_id = 'SP'
+        elif text.find("PCM") >= 0:
+            compgrp_id = 'PCM'
         elif text.find("PYA") >= 0  or text.find("โป่งแยง") >= 0:
             compgrp_id = 'PYA'
         elif text.find("DTC") >= 0  or text.find("ดอยสะเก็ด") >= 0:
             compgrp_id = 'DTC'
+        elif text.find("MANSION") >= 0  or text.find("ซอย 40") >= 0 or text.find("ซอย40") >= 0 or text.find("ซ.40") >= 0 or text.find("ซ. 40") >= 0:
+            compgrp_id = 'MANSION'
+        elif text.find("โรงน้ำ") >= 0  or text.find("BWP") >= 0 :
+            compgrp_id = 'BWP'
+
+        path = "address/"
+        addr = ""
+        file1 = open(path + compgrp_id+".txt", encoding="utf8")
+        while True:
+            # Get next line from file
+            line = file1.readline()
+            if not line:
+                break
+
+            addr += line.strip()+"\n"
+
+        file1.close()
+        text_message = TextSendMessage(text=addr)
 
     elif intent == 'holiday':
         holiday = ""
