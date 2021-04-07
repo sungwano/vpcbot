@@ -75,21 +75,20 @@ def reply(intent,text,reply_token,id,disname):
         elif text.find("DTC") >= 0  or text.find("ดอยสะเก็ด") >= 0:
             compgrp_id = 'DTC'
 
-        #print(text)
+    elif intent == 'holiday':
+        holiday = ""
         path = "address/"
         file1 = open(path + compgrp_id+".txt", encoding="utf8")
-        addr = ""
         while True:
             # Get next line from file
             line = file1.readline()
             if not line:
                 break
 
-            addr += line.strip()+"\n"
+            holiday += line.strip()+"\n"
 
         file1.close()
-        #add = getAdd(compgrp_id)
-        text_message = TextSendMessage(text=addr)
+        text_message = TextSendMessage(text=holiday)
 
     elif intent == 'ext_number':
         dep_id = ''
