@@ -54,7 +54,7 @@ def reply(intent,text,reply_token,id,disname):
         toDay = UpdateDate.split(' ')[0]
         #print(UpdateDate)
         text_message = TextSendMessage(
-            text='รายงานผู้ติด COVID-19 ในประเทศไทยประจำวันที่ {}\n\nติดเชื้อสะสม = {} คน(+เพิ่ม {})\nหายแล้ว = {} คน\nรักษาอยู่ใน รพ. = {} คน\nเสียชีวิต = {} คน\n\n**Updated : {}'.format(
+            text='รายงานผู้ติด COVID-19 ในประเทศไทยประจำวันที่ {}\n\nติดเชื้อสะสม = {} คน(+เพิ่ม {})\nหายแล้ว = {} คน\nรักษาอยู่ใน รพ. = {} คน\nเสียชีวิต = {} คน\n\n**Updated : {}\nข้อมูลอ้างอิงจากกรมควบคุมโรค'.format(
                 toDay, Confirmed, NewConfirmed, Recovered, Hospitalized, Deaths, UpdateDate))
     elif intent == 'company_addr':
         compgrp_id = ''
