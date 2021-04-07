@@ -28,11 +28,11 @@ def callback():
 
     disname = profile.display_name
 
-    #print('id = ' + id)
-    #print('name = ' + disname)
-    #print('text = ' + text)
-    #print('intent = ' + intent)
-    #print('reply_token = ' + reply_token)
+    print('id = ' + id)
+    print('name = ' + disname)
+    print('text = ' + text)
+    print('intent = ' + intent)
+    print('reply_token = ' + reply_token)
     reply(intent, text, reply_token, id, disname)
 
     return 'OK'
@@ -77,8 +77,8 @@ def reply(intent,text,reply_token,id,disname):
 
     elif intent == 'holiday':
         holiday = ""
-        path = "address/"
-        file1 = open(path + compgrp_id+".txt", encoding="utf8")
+        path = "hr/"
+        file1 = open(path + "holiday.txt", encoding="utf8")
         while True:
             # Get next line from file
             line = file1.readline()
